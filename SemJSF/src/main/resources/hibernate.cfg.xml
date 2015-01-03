@@ -10,5 +10,13 @@
     <property name="hibernate.dialect">org.hibernate.dialect.HSQLDialect</property>
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.format_sql">true</property>
+    
+    <mapping class="com.jsilvamoises.model.entities.Cidade" />
+    <mapping class="com.jsilvamoises.model.entities.Endereco" />
+    <mapping class="com.jsilvamoises.model.entities.Estado" />
+    <mapping class="com.jsilvamoises.model.entities.Pessoa" />
+    <mapping class="com.jsilvamoises.model.entities.Sexo" />
+    <mapping class="com.jsilvamoises.model.entities.TipoEndereco" />
+    <mapping class="com.jsilvamoises.model.entities.TipoLogradouro" />
   </session-factory>
 </hibernate-configuration>

@@ -23,20 +23,25 @@ import org.hibernate.annotations.ForeignKey;
  * @author Moises
  */
 @Entity
-@Table(name = "tbl_sexo")
-public class Sexo implements Serializable{
-    
-    @OneToMany(mappedBy = "sexo",fetch = FetchType.LAZY)
-    @ForeignKey(name = "FK_SEXO")
-    private List<Pessoa> pessoas;
-    
+@Table(name = "tbl_tipo_logradouro")
+public class TipoLogradouro implements Serializable {
+
+    private static final Long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "sex_id")
+    @Column(name = "til_id")
     private Long id;
+
+    @Column(name = "til_descricao_tipo_logradouro", unique = true, nullable = false, length = 50)
+    private String descricaoTipoLogradouro;
     
-    @Column(name = "sex_descricao",nullable = false, length = 10, unique = true)
-    private String descricao;
+    @OneToMany(mappedBy = "tipoLogradouro",fetch = FetchType.LAZY)
+    @ForeignKey(name = "FK_TP_LOGRADOURO")
+    private List<Endereco> enderecos;
+
+    public TipoLogradouro() {
+    }
 
     public Long getId() {
         return id;
@@ -46,18 +51,18 @@ public class Sexo implements Serializable{
         this.id = id;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getDescricaoTipoLogradouro() {
+        return descricaoTipoLogradouro;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao.toUpperCase();
+    public void setDescricaoTipoLogradouro(String descricaoTipoLogradouro) {
+        this.descricaoTipoLogradouro = descricaoTipoLogradouro;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 13 * hash + Objects.hashCode(this.id);
+        hash = 79 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -69,7 +74,7 @@ public class Sexo implements Serializable{
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Sexo other = (Sexo) obj;
+        final TipoLogradouro other = (TipoLogradouro) obj;
         return Objects.equals(this.id, other.id);
     }
 
@@ -78,14 +83,4 @@ public class Sexo implements Serializable{
         return id.toString();
     }
 
-    public List<Pessoa> getPessoas() {
-        return pessoas;
-    }
-
-    public void setPessoas(List<Pessoa> pessoas) {
-        this.pessoas = pessoas;
-    }
-    
-    
-    
 }

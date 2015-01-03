@@ -23,20 +23,27 @@ import org.hibernate.annotations.ForeignKey;
  * @author Moises
  */
 @Entity
-@Table(name = "tbl_sexo")
-public class Sexo implements Serializable{
-    
-    @OneToMany(mappedBy = "sexo",fetch = FetchType.LAZY)
-    @ForeignKey(name = "FK_SEXO")
-    private List<Pessoa> pessoas;
+@Table(name = "tbl_estado")
+public class Estado implements Serializable{
+     private static final Long serialVersionUID = 1L;
     
     @Id
+    @Column(name = "est_id")    
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "sex_id")
     private Long id;
     
-    @Column(name = "sex_descricao",nullable = false, length = 10, unique = true)
-    private String descricao;
+    @Column(name = "est_nome", nullable = false,length = 20, unique = true)   
+    private String nome;
+    
+    @Column(name = "est_sigla", nullable = false,length = 2, unique = true)
+    private String sigla;
+    
+    @OneToMany(mappedBy = "estado", fetch = FetchType.LAZY)
+    @ForeignKey(name = "FK_ESTADO")
+    private List<Endereco> enderecos;
+
+    public Estado() {
+    }
 
     public Long getId() {
         return id;
@@ -46,18 +53,26 @@ public class Sexo implements Serializable{
         this.id = id;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getNome() {
+        return nome;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao.toUpperCase();
+    public void setNome(String nome) {
+        this.nome = nome.toUpperCase();
+    }
+
+    public String getSigla() {
+        return sigla;
+    }
+
+    public void setSigla(String sigla) {
+        this.sigla = sigla.toUpperCase();
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 13 * hash + Objects.hashCode(this.id);
+        int hash = 5;
+        hash = 47 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -69,23 +84,17 @@ public class Sexo implements Serializable{
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Sexo other = (Sexo) obj;
-        return Objects.equals(this.id, other.id);
+        final Estado other = (Estado) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public String toString() {
         return id.toString();
     }
-
-    public List<Pessoa> getPessoas() {
-        return pessoas;
-    }
-
-    public void setPessoas(List<Pessoa> pessoas) {
-        this.pessoas = pessoas;
-    }
-    
     
     
 }

@@ -7,18 +7,22 @@ package com.jsilvamoises.model.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import org.hibernate.annotations.ForeignKey;
 
 /**
  *
@@ -30,14 +34,10 @@ public class Pessoa  implements Serializable{
     
     private static final Long serialVersionUID = 1L;
 
-    public Pessoa() {
-    }
-    
-    
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "pes_codigo")
+    @Column(name = "pes_id")
     private Long id;
     
     @Column(name = "pes_nome",nullable = false,length = 90)
@@ -60,9 +60,17 @@ public class Pessoa  implements Serializable{
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataCadastro;
     
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "pes_sexo_id")
+    @ForeignKey(name = "FK_SEXO")
+    @JoinColumn(name = "pes_sexo_id", referencedColumnName = "sex_id")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)    
     private Sexo sexo;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @ForeignKey(name = "FK_PESSOA")
+    private Endereco endereco;
+    
+    public Pessoa() {
+    }
 
     public Long getId() {
         return id;
@@ -77,7 +85,7 @@ public class Pessoa  implements Serializable{
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        this.nome = nome.toUpperCase();
     }
 
     public String getEmail() {
@@ -85,7 +93,7 @@ public class Pessoa  implements Serializable{
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.email = email.toLowerCase();
     }
 
     public String getTelefone() {
@@ -144,15 +152,20 @@ public class Pessoa  implements Serializable{
             return false;
         }
         final Pessoa other = (Pessoa) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.id, other.id);
     }
 
     @Override
     public String toString() {
-        return "Pessoa{" + "id=" + id + '}';
+        return id.toString();
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
     
     

@@ -23,20 +23,25 @@ import org.hibernate.annotations.ForeignKey;
  * @author Moises
  */
 @Entity
-@Table(name = "tbl_sexo")
-public class Sexo implements Serializable{
-    
-    @OneToMany(mappedBy = "sexo",fetch = FetchType.LAZY)
-    @ForeignKey(name = "FK_SEXO")
-    private List<Pessoa> pessoas;
-    
+@Table(name = "tbl_tipo_endereco")
+public class TipoEndereco implements Serializable {
+
+    private static final Long serialVersionUID = 1L;
+
     @Id
+    @Column(name = "tie_id",insertable = true, updatable = true)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "sex_id")
     private Long id;
-    
-    @Column(name = "sex_descricao",nullable = false, length = 10, unique = true)
-    private String descricao;
+
+    @Column(name = "tie_descricao_tipo_endereco", nullable = false, length = 30)
+    private String descricaoTipoEndereco;
+
+    @OneToMany(mappedBy = "tipoEndereco",fetch = FetchType.LAZY)
+    @ForeignKey(name = "FK_TP_ENDERECO")
+    private List<Endereco> enderecos;
+
+    public TipoEndereco() {
+    }
 
     public Long getId() {
         return id;
@@ -46,18 +51,18 @@ public class Sexo implements Serializable{
         this.id = id;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getDescricaoTipoEndereco() {
+        return descricaoTipoEndereco;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao.toUpperCase();
+    public void setDescricaoTipoEndereco(String descricaoTipoEndereco) {
+        this.descricaoTipoEndereco = descricaoTipoEndereco.toLowerCase();
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 13 * hash + Objects.hashCode(this.id);
+        hash = 37 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -69,8 +74,11 @@ public class Sexo implements Serializable{
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Sexo other = (Sexo) obj;
-        return Objects.equals(this.id, other.id);
+        final TipoEndereco other = (TipoEndereco) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        return true;
     }
 
     @Override
@@ -78,14 +86,12 @@ public class Sexo implements Serializable{
         return id.toString();
     }
 
-    public List<Pessoa> getPessoas() {
-        return pessoas;
+    public List<Endereco> getEnderecos() {
+        return enderecos;
     }
 
-    public void setPessoas(List<Pessoa> pessoas) {
-        this.pessoas = pessoas;
+    public void setEnderecos(List<Endereco> enderecos) {
+        this.enderecos = enderecos;
     }
-    
-    
-    
+
 }
