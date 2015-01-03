@@ -45,7 +45,7 @@ public class HibernateDAO<T> implements InterfaceDAO<T> {
         try {
             
             session.update(Entity);
-            
+           
             return true;
         } catch (Exception e) {
             session.getTransaction().rollback();

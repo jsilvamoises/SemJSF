@@ -33,7 +33,7 @@ public class TipoLogradouro implements Serializable {
     @Column(name = "til_id")
     private Long id;
 
-    @Column(name = "til_descricao_tipo_logradouro", unique = true, nullable = false, length = 50)
+    @Column(name = "til_descricao_logradouro", unique = true, nullable = false, length = 50)
     private String descricaoTipoLogradouro;
     
     @OneToMany(mappedBy = "tipoLogradouro",fetch = FetchType.LAZY)

@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+        <h:outputStylesheet library="css" name="sistema.css"/>
+        <title>Facelets Template</title>
+    </h:head>
+
+    <h:body style="padding: 0; margin: 0">
+
+        <div id="topo">         
+
+
+        </div>
+
+        <div id="menu">
+            <h:form>
+                <p:menubar>
+                    <p:submenu label="Cadastro" style="margin-left: 20px">
+                        <p:menuitem value="Cidade"/>
+                        <p:menuitem value="Endereço"/>
+                        <p:menuitem value="Estado"/>
+                        <p:menuitem value="Pessoa"/>
+                        <p:menuitem value="Sexo"/>
+                        <p:menuitem value="Tipo Endereço"/>
+                        <p:menuitem value="Tipo Logradouro"/>
+                    </p:submenu>
+                </p:menubar>
+            </h:form>
+
+        </div>
+
+        <div id="conteudo" >
+            <ui:insert name="content">
+                <h1>Bem vindo!!</h1><br/>
+                <h2>Moises Juvenal da Silva</h2>
+            </ui:insert>
+        </div>
+
+        <div id="rodape">
+            <!--<ui:insert name="bottom">Bottom</ui:insert>-->
+<!--            <a href="http://www.semeru.com.br/"><img src="#{facesContext.externalContext.requestContextPath}/resources/restrict/images/logo_mini.png" /></a>-->
+
+            <div id="copyright">                  
+                <a href="http://www.semeru.com.br/">Semeru - Curso de Java Server Faces com Hibernate, Maven e Spring Security - &copy; Copyright semeru.com.br 2012</a>
+            </div>
+        </div>
+
+    </h:body>
+
+</html>

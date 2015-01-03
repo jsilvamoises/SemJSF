@@ -16,7 +16,7 @@ public class FacesContextUtil {
 
     private static final String HIBERNATE_SESSION = "hibernate_session";
 
-    public static Session getHIBERNATE_SESSION() {
+    public static Session getRequestSession() {
         return (Session) FacesContext
                 .getCurrentInstance()
                 .getExternalContext()

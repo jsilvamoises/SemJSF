@@ -29,6 +29,7 @@ public class TesteHibernate {
         Session s = HibernateUtil.getSessionFactory().getCurrentSession();
         s.getTransaction().begin();
         s.close();
+        System.exit(0);
     }
     
 }

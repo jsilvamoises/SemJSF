@@ -66,7 +66,7 @@ public class Pessoa  implements Serializable{
     private Sexo sexo;
     
     @ManyToOne(fetch = FetchType.LAZY)
-    @ForeignKey(name = "FK_PESSOA")
+    @ForeignKey(name = "FK_END_PESSOA")
     private Endereco endereco;
     
     public Pessoa() {

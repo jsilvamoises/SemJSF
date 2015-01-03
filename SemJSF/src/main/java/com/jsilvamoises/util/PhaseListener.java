@@ -39,7 +39,7 @@ public class PhaseListener implements javax.faces.event.PhaseListener {
     public void afterPhase(PhaseEvent fase) {
         if (fase.getPhaseId().equals(PhaseId.RENDER_RESPONSE)) {
              System.out.println("Depois da fase "+getPhaseId().getName());
-            Session session = FacesContextUtil.getHIBERNATE_SESSION();
+            Session session = FacesContextUtil.getRequestSession();
             try {
                 session.getTransaction().commit();
             } catch (Exception e) {

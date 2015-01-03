@@ -66,6 +66,16 @@ public class Endereco implements Serializable {
     @ForeignKey(name = "FK_TP_LOGRADOURO")
     private TipoLogradouro tipoLogradouro;
 
+    public Endereco() {
+        this.cidade = new Cidade();
+        this.estado = new Estado();
+        this.pessoa = new Pessoa();
+        this.tipoEndereco = new TipoEndereco();
+        this.tipoLogradouro = new TipoLogradouro();
+    }
+    
+    
+
     public Long getId() {
         return id;
     }
