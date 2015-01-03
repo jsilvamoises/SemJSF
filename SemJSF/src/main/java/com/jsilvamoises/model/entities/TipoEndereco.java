@@ -56,7 +56,7 @@ public class TipoEndereco implements Serializable {
     }
 
     public void setDescricaoTipoEndereco(String descricaoTipoEndereco) {
-        this.descricaoTipoEndereco = descricaoTipoEndereco.toLowerCase();
+        this.descricaoTipoEndereco = descricaoTipoEndereco.toUpperCase();
     }
 
     @Override

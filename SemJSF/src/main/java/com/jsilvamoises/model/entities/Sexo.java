@@ -37,6 +37,9 @@ public class Sexo implements Serializable{
     
     @Column(name = "sex_descricao",nullable = false, length = 10, unique = true)
     private String descricao;
+    
+     @Column(name = "sex_sigla",nullable = false, length = 1, unique = true)
+    private String sigla;
 
     public Long getId() {
         return id;
@@ -84,6 +87,14 @@ public class Sexo implements Serializable{
 
     public void setPessoas(List<Pessoa> pessoas) {
         this.pessoas = pessoas;
+    }
+
+    public String getSigla() {
+        return sigla;
+    }
+
+    public void setSigla(String sigla) {
+        this.sigla = sigla;
     }
     
     

@@ -23,13 +23,13 @@
             <h:form>
                 <p:menubar>
                     <p:submenu label="Cadastro" style="margin-left: 20px">
-                        <p:menuitem value="Cidade"/>
+                        <p:menuitem value="Cidade" outcome="/restrict/cadastrarCidade?faces-redirect=true"/>
                         <p:menuitem value="Endereço"/>
-                        <p:menuitem value="Estado"/>
+                        <p:menuitem value="Estado" outcome="/restrict/cadastrarEstado?faces-redirect=true"/>
                         <p:menuitem value="Pessoa"/>
-                        <p:menuitem value="Sexo"/>
-                        <p:menuitem value="Tipo Endereço"/>
-                        <p:menuitem value="Tipo Logradouro"/>
+                        <p:menuitem value="Sexo" outcome="/restrict/cadastrarSexo?faces-redirect=true"/>
+                        <p:menuitem value="Tipo Endereço" outcome="/restrict/cadastrarTipoEndereco?faces-redirect=true"/>
+                        <p:menuitem value="Tipo Logradouro" outcome="/restrict/cadastrarTipoLogradouro?faces-redirect=true"/>
                     </p:submenu>
                 </p:menubar>
             </h:form>

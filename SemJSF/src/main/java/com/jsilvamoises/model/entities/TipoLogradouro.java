@@ -83,4 +83,12 @@ public class TipoLogradouro implements Serializable {
         return id.toString();
     }
 
+    public List<Endereco> getEnderecos() {
+        return enderecos;
+    }
+
+    public void setEnderecos(List<Endereco> enderecos) {
+        this.enderecos = enderecos;
+    }
+
 }

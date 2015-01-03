@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../resources/template/modeloPrincipal.xhtml"
+                xmlns:="http://www.w3.org/1999/xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:define name="content">
+
+        <p:growl id="msg" />
+
+        <p:fieldset legend="Cadastrar Cidades" style="margin-bottom: 20px;">
+
+            <p:tabView widgetVar="tb1" dynamic="true" id="tb1"  cache="false"  >
+                <p:tab title="Cidade">
+                    <h:form prependId="false" id="frmCidade">
+                        
+                        <h:panelGrid columns="1" cellpadding="1" styleClass="panelGrid" id="grid0" >
+                            <p:outputLabel value="Código" />
+                            <p:inputText value="#{mbCidade.cidade.id}" disabled="true"/>
+
+                            <p:outputLabel value="Nome" for="nome" />
+                            <p:inputText id="nome" value="#{mbCidade.cidade.nome}" size="50" onkeyup="this.value = this.value.toUpperCase()" required="true"/>
+
+                        </h:panelGrid>
+
+                        <p:toolbar style="margin-top: 10px">
+                            <f:facet name="left">
+                                <p:commandButton value="Limpar" action="#{mbCidade.limpar()}" update="nome"/>
+                                <p:commandButton value="Salvar" actionListener="#{mbCidade.addCidade()}" update=" frmCidade :msg" >
+                                  
+                                </p:commandButton>
+                                <p:commandButton value="Excluir" actionListener="#{mbCidade.delete()}"/>
+                            </f:facet>
+                        </p:toolbar>
+                    </h:form>
+
+                    
+
+                </p:tab>
+
+                <p:tab id="tab2" title="Relatório" >
+                    <h:form id="frmTable" >
+                        <p:dataTable id="table" value="#{mbCidade.cidades}" var="cidade" scrollHeight="350" scrollable="true">
+                            <p:column headerText="Código" style="width: 10%">
+                                <h:outputText value="#{cidade.id}"/>
+                            </p:column>
+
+                            <p:column headerText="Nome">
+                                <h:outputText value="#{cidade.nome}"/>
+                            </p:column>
+
+                            <p:column headerText="Ação" style="width: 30%; text-align: center" >
+                                <p:commandButton value="Editar" icon="ui-icon-pencil" update=":tb1:frmCidade" process="@this" onclick="tb1.selectNode(1)">
+                                    <f:setPropertyActionListener target="#{mbCidade.cidade}" value="#{cidade}" />                                    
+                                </p:commandButton>
+                                
+                                <p:commandButton value="Remover" icon="ui-icon-pencil" update=":tb1:frmTable :msg" process="@this" action="#{mbCidade.delete}">
+                                    <f:setPropertyActionListener target="#{mbCidade.cidade}" value="#{cidade}" />                                    
+                                </p:commandButton>
+                            </p:column>
+                            
+                            
+                        </p:dataTable>
+                    </h:form>
+
+
+                </p:tab>
+            </p:tabView >
+
+        </p:fieldset>
+
+    </ui:define>
+
+</ui:composition>

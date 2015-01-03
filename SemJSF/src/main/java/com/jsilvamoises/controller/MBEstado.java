@@ -7,7 +7,7 @@ package com.jsilvamoises.controller;
 
 import com.jsilvamoises.dao.HibernateDAO;
 import com.jsilvamoises.dao.InterfaceDAO;
-import com.jsilvamoises.model.entities.Cidade;
+import com.jsilvamoises.model.entities.Estado;
 import com.jsilvamoises.util.FacesUtil;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -19,52 +19,52 @@ import javax.faces.bean.ViewScoped;
  *
  * @author Moises
  */
-@ManagedBean(name = "mbCidade")
+@ManagedBean(name = "mbEstado")
 @ViewScoped
-public class MBCidade implements Serializable {
+public class MBEstado implements Serializable {
 
     private static final Long serialVersionUID = 1L;
     private int aba = 1;
-    private Cidade cidade = new Cidade();
-    private List<Cidade> cidades = new ArrayList<>();
+    private Estado estado = new Estado();
+    private List<Estado> estados = new ArrayList<>();
     ;
-    private List<Cidade> cidadesFiltrada = new ArrayList<>();
+    private List<Estado> estadosFiltrada = new ArrayList<>();
 
-    public MBCidade() {
+    public MBEstado() {
 
     }
 
-    private InterfaceDAO<Cidade> cidadeDAO() {
-        InterfaceDAO<Cidade> cidadeDao = new HibernateDAO<>(Cidade.class);
-        return cidadeDao;
+    private InterfaceDAO<Estado> estadoDAO() {
+        InterfaceDAO<Estado> estadoDao = new HibernateDAO<>(Estado.class);
+        return estadoDao;
     }
 
-    public String editCidade() {
-        return "/restrict/cadastrarCidade";//verificar
+    public String editEstado() {
+        return "/restrict/cadastrarEstado";//verificar
     }
 
     public String limpar() {
-        cidade = new Cidade();
-        return "/restrict/cadastrarCidade";//verificar
+        estado = new Estado();
+        return "/restrict/cadastrarEstado";//verificar
     }
 
-    public void addCidade() {
-        if (cidade != null) {
-            System.err.println(cidade.getNome());
-            if (cidade.getId() == null || cidade.getId() == 0) {
-                salvarCidade();
+    public void addEstado() {
+        if (estado != null) {
+            System.err.println(estado.getNome());
+            if (estado.getId() == null || estado.getId() == 0) {
+                salvarEstado();
 
             } else {
-                updateCidade();
+                updateEstado();
             }
         }
 
     }
 
-    private void salvarCidade() {
+    private void salvarEstado() {
 
         //System.err.println(FacesContext.getCurrentInstance().getAttributes());
-        boolean result = cidadeDAO().merge(cidade);
+        boolean result = estadoDAO().merge(estado);
         System.err.println(result);
         if (result) {
 
@@ -76,11 +76,11 @@ public class MBCidade implements Serializable {
     }
 
     public void delete() {
-        deleteCidade();
+        deleteEstado();
     }
 
-    private void deleteCidade() {
-        boolean result = cidadeDAO().remove(cidade);
+    private void deleteEstado() {
+        boolean result = estadoDAO().remove(estado);
         if (result) {
             FacesUtil.addInfoMessage("Registro excluído com sucesso!");
             limpar();
@@ -89,8 +89,8 @@ public class MBCidade implements Serializable {
         }
     }
 
-    public void updateCidade() {
-        boolean result = cidadeDAO().updade(cidade);
+    public void updateEstado() {
+        boolean result = estadoDAO().updade(estado);
         if (result) {
 
             FacesUtil.addInfoMessage("Dado salvo com sucesso");
@@ -100,30 +100,30 @@ public class MBCidade implements Serializable {
         }
     }
 
-    public Cidade getCidade() {
-        return cidade;
+    public Estado getEstado() {
+        return estado;
     }
 
-    public void setCidade(Cidade cidade) {
+    public void setEstado(Estado estado) {
         aba = 1;
-        this.cidade = cidade;
+        this.estado = estado;
     }
 
-    public List<Cidade> getCidades() {
-        cidades = cidadeDAO().getEntities();
-        return cidades;
+    public List<Estado> getEstados() {
+        estados = estadoDAO().getEntities();
+        return estados;
     }
 
-    public void setCidades(List<Cidade> cidades) {
-        this.cidades = cidades;
+    public void setEstados(List<Estado> estados) {
+        this.estados = estados;
     }
 
-    public List<Cidade> getCidadesFiltrada() {
-        return cidadesFiltrada;
+    public List<Estado> getEstadosFiltrada() {
+        return estadosFiltrada;
     }
 
-    public void setCidadesFiltrada(List<Cidade> cidadesFiltrada) {
-        this.cidadesFiltrada = cidadesFiltrada;
+    public void setEstadosFiltrada(List<Estado> estadosFiltrada) {
+        this.estadosFiltrada = estadosFiltrada;
     }
 
     public int getAba() {

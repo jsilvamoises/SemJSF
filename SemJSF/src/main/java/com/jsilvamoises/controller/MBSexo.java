@@ -7,7 +7,7 @@ package com.jsilvamoises.controller;
 
 import com.jsilvamoises.dao.HibernateDAO;
 import com.jsilvamoises.dao.InterfaceDAO;
-import com.jsilvamoises.model.entities.Cidade;
+import com.jsilvamoises.model.entities.Sexo;
 import com.jsilvamoises.util.FacesUtil;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -19,52 +19,52 @@ import javax.faces.bean.ViewScoped;
  *
  * @author Moises
  */
-@ManagedBean(name = "mbCidade")
+@ManagedBean(name = "mbSexo")
 @ViewScoped
-public class MBCidade implements Serializable {
+public class MBSexo implements Serializable {
 
     private static final Long serialVersionUID = 1L;
     private int aba = 1;
-    private Cidade cidade = new Cidade();
-    private List<Cidade> cidades = new ArrayList<>();
+    private Sexo sexo = new Sexo();
+    private List<Sexo> sexos = new ArrayList<>();
     ;
-    private List<Cidade> cidadesFiltrada = new ArrayList<>();
+    private List<Sexo> sexosFiltrada = new ArrayList<>();
 
-    public MBCidade() {
+    public MBSexo() {
 
     }
 
-    private InterfaceDAO<Cidade> cidadeDAO() {
-        InterfaceDAO<Cidade> cidadeDao = new HibernateDAO<>(Cidade.class);
-        return cidadeDao;
+    private InterfaceDAO<Sexo> sexoDAO() {
+        InterfaceDAO<Sexo> sexoDao = new HibernateDAO<>(Sexo.class);
+        return sexoDao;
     }
 
-    public String editCidade() {
-        return "/restrict/cadastrarCidade";//verificar
+    public String editSexo() {
+        return "/restrict/cadastrarSexo";//verificar
     }
 
     public String limpar() {
-        cidade = new Cidade();
-        return "/restrict/cadastrarCidade";//verificar
+        sexo = new Sexo();
+        return "/restrict/cadastrarSexo";//verificar
     }
 
-    public void addCidade() {
-        if (cidade != null) {
-            System.err.println(cidade.getNome());
-            if (cidade.getId() == null || cidade.getId() == 0) {
-                salvarCidade();
+    public void addSexo() {
+        if (sexo != null) {
+            System.err.println(sexo.getDescricao());
+            if (sexo.getId() == null || sexo.getId() == 0) {
+                salvarSexo();
 
             } else {
-                updateCidade();
+                updateSexo();
             }
         }
 
     }
 
-    private void salvarCidade() {
+    private void salvarSexo() {
 
         //System.err.println(FacesContext.getCurrentInstance().getAttributes());
-        boolean result = cidadeDAO().merge(cidade);
+        boolean result = sexoDAO().merge(sexo);
         System.err.println(result);
         if (result) {
 
@@ -76,11 +76,11 @@ public class MBCidade implements Serializable {
     }
 
     public void delete() {
-        deleteCidade();
+        deleteSexo();
     }
 
-    private void deleteCidade() {
-        boolean result = cidadeDAO().remove(cidade);
+    private void deleteSexo() {
+        boolean result = sexoDAO().remove(sexo);
         if (result) {
             FacesUtil.addInfoMessage("Registro excluído com sucesso!");
             limpar();
@@ -89,8 +89,8 @@ public class MBCidade implements Serializable {
         }
     }
 
-    public void updateCidade() {
-        boolean result = cidadeDAO().updade(cidade);
+    public void updateSexo() {
+        boolean result = sexoDAO().updade(sexo);
         if (result) {
 
             FacesUtil.addInfoMessage("Dado salvo com sucesso");
@@ -100,30 +100,30 @@ public class MBCidade implements Serializable {
         }
     }
 
-    public Cidade getCidade() {
-        return cidade;
+    public Sexo getSexo() {
+        return sexo;
     }
 
-    public void setCidade(Cidade cidade) {
+    public void setSexo(Sexo sexo) {
         aba = 1;
-        this.cidade = cidade;
+        this.sexo = sexo;
     }
 
-    public List<Cidade> getCidades() {
-        cidades = cidadeDAO().getEntities();
-        return cidades;
+    public List<Sexo> getSexos() {
+        sexos = sexoDAO().getEntities();
+        return sexos;
     }
 
-    public void setCidades(List<Cidade> cidades) {
-        this.cidades = cidades;
+    public void setSexos(List<Sexo> sexos) {
+        this.sexos = sexos;
     }
 
-    public List<Cidade> getCidadesFiltrada() {
-        return cidadesFiltrada;
+    public List<Sexo> getSexosFiltrada() {
+        return sexosFiltrada;
     }
 
-    public void setCidadesFiltrada(List<Cidade> cidadesFiltrada) {
-        this.cidadesFiltrada = cidadesFiltrada;
+    public void setSexosFiltrada(List<Sexo> sexosFiltrada) {
+        this.sexosFiltrada = sexosFiltrada;
     }
 
     public int getAba() {
