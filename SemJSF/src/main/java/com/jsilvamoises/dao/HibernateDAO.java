@@ -9,6 +9,7 @@ import com.jsilvamoises.util.FacesUtil;
 import com.jsilvamoises.util.HibernateUtil;
 import java.io.Serializable;
 import java.util.List;
+import javax.faces.bean.ApplicationScoped;
 import org.hibernate.Session;
 import org.hibernate.criterion.DetachedCriteria;
 
@@ -17,6 +18,7 @@ import org.hibernate.criterion.DetachedCriteria;
  * @author Moises
  * @param <T>
  */
+@ApplicationScoped
 public class HibernateDAO<T> implements InterfaceDAO<T> {
 
     private static final Long SerialVersionUID = 1l;

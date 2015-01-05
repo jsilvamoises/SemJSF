@@ -2,74 +2,149 @@
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="./../resources/template/modeloPrincipal.xhtml"
-                xmlns:="http://www.w3.org/1999/xhtml"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="content">
 
+        <f:event listener="#{mbPessoa.init()}" type="preRenderView"/>
+
+
+
+
         <p:growl id="msg" />
 
-        <p:fieldset legend="Cadastrar Cidades" style="margin-bottom: 20px;">
+        <p:fieldset legend="Cadastrar Pessoas" style="margin-bottom: 20px;">
 
-            <p:tabView widgetVar="tb1" dynamic="true" id="tb1"  cache="false"  >
-                <p:tab title="Cidade">
-                    <h:form prependId="false" id="frmCidade">
-                        
-                        <h:panelGrid columns="1" cellpadding="1" styleClass="panelGrid" id="grid0" >
-                            <p:outputLabel value="Código" />
-                            <p:inputText value="#{mbCidade.cidade.id}" disabled="true"/>
+            <h:form id="Pessoa">
+                <p:wizard nextLabel="Próximo" backLabel="Anterior">
+                    <p:tab id="dadospessoais" title="Dados Pessoais">
+                        <p:panel header="Dados Pessoais" style="margin-top: 10px;">
 
-                            <p:outputLabel value="Nome" for="nome" />
-                            <p:inputText id="nome" value="#{mbCidade.cidade.nome}" size="50" onkeyup="this.value = this.value.toUpperCase()" required="true"/>
+                            <h:panelGrid columns="1" id="grid1">
+                                <h:outputLabel value="Código" for="id"/>
+                                <p:inputText id="id" value="#{mbPessoa.pessoa.id}" disabled="true"/>
 
-                        </h:panelGrid>
+                                <h:outputLabel value="Nome" for="nome"/>
+                                <p:inputText id="nome" value="#{mbPessoa.pessoa.nome}" size="60" required="true" onkeyup="this.value = this.value.toUpperCase()"/>
 
-                        <p:toolbar style="margin-top: 10px">
+                                <h:outputLabel value="Email" for="email"/>
+                                <p:inputText id="email" value="#{mbPessoa.pessoa.email}" size="60" required="true" onkeyup="this.value = this.value.toLowerCase()"/>
+                            </h:panelGrid>
+
+                            <h:panelGrid columns="2" id="grid2">
+                                <h:outputLabel value="CPF" for="cpf"/>
+                                <h:outputLabel value="Sexo" for="sexo"/>
+                                <p:inputMask mask="999.999.999-99" id="cpf" value="#{mbPessoa.pessoa.cpf}" size="30" />
+                                <p:selectOneMenu id="sexo" value="#{mbPessoa.pessoa.sexo}" effect="explode">
+                                    <f:selectItem itemLabel="Selecione"/>
+                                    <f:selectItems value="#{mbSexo.sexos}" var="sexo" itemValue="#{sexo}" itemLabel="#{sexo.descricao}"/>
+                                </p:selectOneMenu>
+                            </h:panelGrid>
+
+                            <h:panelGrid columns="2" id="grid3">
+                                <h:outputLabel value="Telefone / Celular" for="telefone"/>
+                                <h:outputLabel value="Data Nascimento" for="datanascimento" />
+                                <p:inputMask mask="(99) 9999-9999 (9)9999-9999" id="telefone" value="#{mbPessoa.pessoa.telefone}" size="40" />
+                                <p:calendar id="datanascimento" value="#{mbPessoa.pessoa.dataNascimento}" size="14" effect="explode" showButtonPanel="true" navigator="true"/>
+                            </h:panelGrid>
+                        </p:panel>
+                    </p:tab>
+
+                    <p:tab id="endereco" title="Endereco" >
+                        <p:panel header="Endereço" style="margin-top: 10px;">
+
+
+                            <h:panelGrid columns="3" id="grid10">
+                                <h:outputLabel value="CEP" for="cep"/>
+                                <h:outputLabel value="TP log" for="tplog"/>
+                                <h:outputLabel value="Nome " for="nomeEndereco"/>
+
+                                <p:inputMask id="cep" mask="99.999-999" value="#{mbPessoa.endereco.cep}"/>
+                                <p:selectOneMenu id="tplog" value="#{mbPessoa.endereco.tipoLogradouro}" effect="explode">
+                                    <f:selectItem itemLabel="Selecione"/>
+                                    <f:selectItems value="#{mbTipoLogradouro.tipoLogradouros}" var="logradouro" itemLabel="#{logradouro.descricaoTipoLogradouro}" itemValue="#{logradouro}"/>
+                                </p:selectOneMenu>
+                                <p:inputText id="nomeEndereco" value="#{mbPessoa.endereco.nomeLogradouro}" size="50"/>
+
+                            </h:panelGrid>
+
+                            <h:panelGrid columns="3" id="grid11">
+                                <h:outputLabel value="Numero" for="numero"/>
+                                <h:outputLabel value="Bairro" for="bairro"/>
+                                <h:outputLabel value="Complemento " for="complemento"/>
+
+                                <p:inputText id="numero" value="#{mbPessoa.endereco.numero}" size="10"/>
+                                <p:inputText id="bairro" value="#{mbPessoa.endereco.bairro}" size="50"/>
+                                <p:inputText id="complemento" value="#{mbPessoa.endereco.complemento}" size="20"/>
+
+                            </h:panelGrid>
+
+                            <h:panelGrid columns="3" id="grid12">
+                                <h:outputLabel value="Cidade" for="cidade"/>
+                                <h:outputLabel value="Estado" for="estado"/>
+                                <h:outputLabel value="Tipo Endereço " for="tipoendereco"/>
+
+                                <p:selectOneMenu id="cidade" value="#{mbPessoa.endereco.cidade}" style="width: 400px;" effect="explode">
+                                    <f:selectItem itemLabel="Selecione"/>
+                                    <f:selectItems value="#{mbCidade.cidades}" var="cidade" itemLabel="#{cidade.nome}" itemValue="#{cidade}"/>
+                                </p:selectOneMenu>
+
+                                <p:selectOneMenu id="estado" value="#{mbPessoa.endereco.estado}" effect="explode">
+                                    <f:selectItem itemLabel="Selecione"/>
+                                    <f:selectItems value="#{mbEstado.estados}" var="estado" itemLabel="#{estado.sigla}" itemValue="#{estado}"/>
+                                </p:selectOneMenu>
+
+                                <p:selectOneMenu id="tipoendereco" value="#{mbPessoa.endereco.tipoEndereco}" effect="explode">
+                                    <f:selectItem itemLabel="Selecione"/>
+                                    <f:selectItems value="#{mbTipoEndereco.tipoEnderecos}" var="tipoendereco" itemLabel="#{tipoendereco.descricaoTipoEndereco}" itemValue="#{tipoendereco}"/>
+                                </p:selectOneMenu>
+                            </h:panelGrid>
+
+
+                        </p:panel>
+                    </p:tab>
+
+                    <p:tab title="Login" id="login">
+
+                        <p:panel header="Login">
+                            <h:panelGrid columns="1">
+                                <p:outputLabel value="Login"/>
+                                <p:inputText value="#{mbPessoa.pessoa.login}"/>
+
+                                <p:outputLabel value="Senha" for="psw1"/>
+                                <p:password id="psw1" value="#{mbPessoa.pessoa.senha}" match="psw2" feedback="true" required="true"/>
+
+                                <p:outputLabel  value="Confirme" for="psw2"/>
+                                <p:password id="psw2" value="#{mbPessoa.pessoa.senha}" required="true"/>
+
+                                <p:outputLabel value="Tipo de Acessp"/>
+                                <p:selectOneMenu value="#{mbPessoa.pessoa.permissao}" >
+                                    <f:selectItem itemLabel="Selecione"/>
+                                    <f:selectItems value="#{mbTipoAcesso.tipoAcessos}" var="acesso" itemLabel="#{acesso.descricao}" itemValue="#{acesso}"/>
+                                </p:selectOneMenu>
+
+                            </h:panelGrid>
+
+                        </p:panel>
+
+                    </p:tab>
+
+                    <p:tab title="Observações" id="Observação">
+                        <p:inputTextarea value="#{mbPessoa.pessoa.observacao}" rows="5" title="Observações"/>
+
+                        <p:toolbar>
                             <f:facet name="left">
-                                <p:commandButton value="Limpar" action="#{mbCidade.limpar()}" update="nome"/>
-                                <p:commandButton value="Salvar" actionListener="#{mbCidade.addCidade()}" update=" frmCidade :msg" >
-                                  
-                                </p:commandButton>
-                                <p:commandButton value="Excluir" actionListener="#{mbCidade.delete()}"/>
+                                <p:commandButton value="Salvar" action="#{mbPessoa.addPessoa()}" update="@form"/>
+                                <p:commandButton value="Limpar"/>
                             </f:facet>
                         </p:toolbar>
-                    </h:form>
 
-                    
+                    </p:tab>
 
-                </p:tab>
-
-                <p:tab id="tab2" title="Relatório" >
-                    <h:form id="frmTable" >
-                        <p:dataTable id="table" value="#{mbCidade.cidades}" var="cidade" scrollHeight="350" scrollable="true">
-                            <p:column headerText="Código" style="width: 10%">
-                                <h:outputText value="#{cidade.id}"/>
-                            </p:column>
-
-                            <p:column headerText="Nome">
-                                <h:outputText value="#{cidade.nome}"/>
-                            </p:column>
-
-                            <p:column headerText="Ação" style="width: 30%; text-align: center" >
-                                <p:commandButton value="Editar" icon="ui-icon-pencil" update=":tb1:frmCidade" process="@this" onclick="tb1.selectNode(1)">
-                                    <f:setPropertyActionListener target="#{mbCidade.cidade}" value="#{cidade}" />                                    
-                                </p:commandButton>
-                                
-                                <p:commandButton value="Remover" icon="ui-icon-pencil" update=":tb1:frmTable :msg" process="@this" action="#{mbCidade.delete}">
-                                    <f:setPropertyActionListener target="#{mbCidade.cidade}" value="#{cidade}" />                                    
-                                </p:commandButton>
-                            </p:column>
-                            
-                            
-                        </p:dataTable>
-                    </h:form>
-
-
-                </p:tab>
-            </p:tabView >
+                </p:wizard>
+            </h:form>
 
         </p:fieldset>
 

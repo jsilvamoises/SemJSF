@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -13,8 +14,59 @@
     </h:head>
 
     <h:body style="padding: 0; margin: 0">
+        <p:messages autoUpdate="true" closable="true" showIcon="true"/>
+        <div id="topo">
+            <div>
+                <h:form>
+                    <div id="home">
+                        <a  href="#{facesContext.externalContext.requestContextPath}/faces/index.xhtml"><p:graphicImage library="images" name="nit.png" style="height: 90px; margin-top: 10px"/></a>   
+                    </div>
 
-        <div id="topo">         
+                </h:form> 
+            </div>
+
+            <div>
+                <h:form >
+                    <p:dock position="top">
+                        <p:menuitem value="Home" outcome="/index.xhtml"  icon="/resources/images/home.png"  />
+                        <p:menuitem value="Logout" icon="/resources/images/logout.png"  />
+
+                    </p:dock>
+                </h:form> 
+            </div>
+
+            <div>                
+                <h:form>
+
+
+                    <div id="logoff">
+                        <p:commandButton icon="ui-icon-power" value="Logoff" class="botaoLogoff"/>
+                    </div>
+                </h:form>
+            </div>
+
+            <div id="usurioLogado" >
+                <h:form>
+                    <h:outputText  value="Usuario logado " />
+                    <p:commandLink value="MOISES.SILVA" style="font-size: 20px" id="user" />
+
+                    <p:tooltip id="tool" for="user">
+                        <p:panelGrid>
+                            <f:facet name="header">
+                                <p:graphicImage library="images" name="home.png" />
+                            </f:facet>
+                        </p:panelGrid>
+
+
+                    </p:tooltip>
+                </h:form>
+
+
+            </div>
+
+
+
+
 
 
         </div>
@@ -24,12 +76,20 @@
                 <p:menubar>
                     <p:submenu label="Cadastro" style="margin-left: 20px">
                         <p:menuitem value="Cidade" outcome="/restrict/cadastrarCidade?faces-redirect=true"/>
-                        <p:menuitem value="Endereço"/>
+                        <p:menuitem value="Endereço" outcome="/restrict/endereco?faces-redirect=true"/>
                         <p:menuitem value="Estado" outcome="/restrict/cadastrarEstado?faces-redirect=true"/>
-                        <p:menuitem value="Pessoa"/>
+                        <p:menuitem value="Pessoa" outcome="/restrict/cadastrarPessoa?faces-redirect=true"/>
                         <p:menuitem value="Sexo" outcome="/restrict/cadastrarSexo?faces-redirect=true"/>
-                        <p:menuitem value="Tipo Endereço" outcome="/restrict/cadastrarTipoEndereco?faces-redirect=true"/>
-                        <p:menuitem value="Tipo Logradouro" outcome="/restrict/cadastrarTipoLogradouro?faces-redirect=true"/>
+                        <p:separator/>
+                        <p:submenu label="Cadastro de Tipos">
+                            <p:menuitem value="Tipo Endereço" outcome="/restrict/cadastrarTipoEndereco?faces-redirect=true"/>
+                            <p:menuitem value="Tipo Logradouro" outcome="/restrict/cadastrarTipoLogradouro?faces-redirect=true"/>
+                            <p:menuitem value="Tipo de Acesso" outcome="/restrict/cadastrarTipoAcesso?faces-redirect=true"/>
+                            <p:menuitem value="Tipo de Código de barras" outcome="/restrict/cadastrarTipoCodigoBarra?faces-redirect=true"/>
+                        </p:submenu>
+                        <p:separator/>
+                        <p:menuitem value="Produto" outcome="/restrict/cadastroProduto?faces-redirect=true"/>
+
                     </p:submenu>
                 </p:menubar>
             </h:form>
@@ -51,6 +111,13 @@
                 <a href="http://www.semeru.com.br/">Semeru - Curso de Java Server Faces com Hibernate, Maven e Spring Security - &copy; Copyright semeru.com.br 2012</a>
             </div>
         </div>
+
+
+
+
+
+
+
 
     </h:body>
 

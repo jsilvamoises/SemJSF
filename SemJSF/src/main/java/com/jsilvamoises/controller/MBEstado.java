@@ -133,5 +133,10 @@ public class MBEstado implements Serializable {
     public void setAba(int aba) {
         this.aba = aba;
     }
+    
+    
+      public Estado getEstadoById(Long id){
+        return estadoDAO().getEntity(id);
+    }
 
 }

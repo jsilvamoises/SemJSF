@@ -134,4 +134,8 @@ public class MBTipoLogradouro implements Serializable {
         this.aba = aba;
     }
 
+    public Object getTipoLogradouroById(Long valueOf) {
+           return tipoLogradouroDAO().getEntity(valueOf);
+    }
+
 }

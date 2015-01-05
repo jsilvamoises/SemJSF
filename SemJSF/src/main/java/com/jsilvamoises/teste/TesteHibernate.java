@@ -5,7 +5,10 @@
  */
 package com.jsilvamoises.teste;
 
+import com.jsilvamoises.controller.MBPessoa;
+import com.jsilvamoises.model.entities.Pessoa;
 import com.jsilvamoises.util.HibernateUtil;
+import java.util.List;
 
 
 
@@ -22,7 +25,12 @@ public class TesteHibernate {
      */
     
     public static void main(String[] args) {
-        new TesteHibernate().conectar();
+        new TesteHibernate().teste2();
+    }
+    
+    public void teste2(){
+      List<Pessoa> l =  new MBPessoa().listByNomeLike("x");
+        System.err.println(l.size());
     }
   
    private void conectar(){

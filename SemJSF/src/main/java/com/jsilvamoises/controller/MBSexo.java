@@ -60,6 +60,10 @@ public class MBSexo implements Serializable {
         }
 
     }
+    
+    public Sexo getSexoById(Long id){
+        return sexoDAO().getEntity(id);
+    }
 
     private void salvarSexo() {
 

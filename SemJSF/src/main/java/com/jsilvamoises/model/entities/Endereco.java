@@ -33,12 +33,16 @@ public class Endereco implements Serializable {
     @Column(name = "end_bairro", nullable = false, length = 50)
     private String bairro;
 
-    @Column(name = "end_cep", nullable = false, length = 9)
+    @Column(name = "end_cep", nullable = false, length = 10)
     private String cep;
 
     @Column(name = "end_complemento", length = 50)
     private String complemento;
+    
+    @Column(name = "end_nome_logradouro", length = 120)
     private String nomeLogradouro;
+    
+     @Column(name = "end_numero", length = 15)
     private String numero;
 
     @ManyToOne

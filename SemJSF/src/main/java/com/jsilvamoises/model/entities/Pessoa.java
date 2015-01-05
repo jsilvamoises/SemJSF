@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 
 import javax.persistence.Entity;
@@ -23,6 +24,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import org.hibernate.annotations.ForeignKey;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.br.CPF;
 
 /**
  *
@@ -43,12 +46,14 @@ public class Pessoa  implements Serializable{
     @Column(name = "pes_nome",nullable = false,length = 90)
     private String nome;
     
+    @Email
     @Column(name = "pes_email",nullable = false,length = 120)
     private String email;
     
-    @Column(name = "pes_telefone",length = 20)
+    @Column(name = "pes_telefone",length = 40)
     private String telefone;
     
+    @CPF
     @Column(name = "pes_cpf",length = 14)
     private String cpf;
     
@@ -65,9 +70,23 @@ public class Pessoa  implements Serializable{
     @ManyToOne(fetch = FetchType.LAZY, optional = false)    
     private Sexo sexo;
     
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY , cascade = CascadeType.ALL)
     @ForeignKey(name = "FK_END_PESSOA")
     private Endereco endereco;
+    
+    @Column(name = "pes_login", nullable = false, length = 20, unique = true)
+    private String login;
+    
+    @Column(name = "pes_senha", nullable = false, length = 20)
+    private String senha;
+    
+    @Column(name = "pes_permissao", nullable = false, length = 20)
+    private String permissao;
+    
+    @Column(name = "pes_observacao")
+    private String observacao;
+    
+    
     
     public Pessoa() {
     }
@@ -167,11 +186,38 @@ public class Pessoa  implements Serializable{
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
-    
-    
-    
-    
-    
+
+    public String getObservacao() {
+        return observacao;
+    }
+
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public String getPermissao() {
+        return permissao;
+    }
+
+    public void setPermissao(String permissao) {
+        this.permissao = permissao;
+    }
 
     
     

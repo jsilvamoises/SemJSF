@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+        <h:outputStylesheet library="css" name="sistema.css"/>
+    </h:head>
+    <h:body style="margin: 0px; padding: 0px">
+        <div id="topo">
+               fff
+        </div>
+        <h:form>
+            <p:dialog header="Login" visible="true" showEffect="slide" closable="false" modal="true" resizable="false" showHeader="true">
+                
+                <h:panelGrid columns="1">
+                    <h5>Empresa de sistemas Ltda.</h5>
+                </h:panelGrid>
+                
+                
+                <h:panelGrid columns="2">
+                    <p:graphicImage library="images" name="chave.png"/>
+                    <h:panelGroup>
+                        <h:panelGrid columns="1">
+                            <p:outputLabel value="Login"/>
+                            <p:inputText/>
+                            <p:outputLabel value="Senha"/>
+                            <p:password  />
+                        </h:panelGrid>
+                    </h:panelGroup>
+                </h:panelGrid>
+
+                <h:panelGrid columns="2" style="width: 100%">
+                    <p:commandButton value="Logar" style="width: 100%; background-color: #045491;"/>
+                    <p:commandButton value="Esqueci!" style="width: 100%"/>
+                </h:panelGrid>
+
+            </p:dialog>
+        </h:form>
+    </h:body>
+</html>
+

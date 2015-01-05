@@ -8,6 +8,7 @@ package com.jsilvamoises.controller;
 import com.jsilvamoises.dao.HibernateDAO;
 import com.jsilvamoises.dao.InterfaceDAO;
 import com.jsilvamoises.model.entities.TipoEndereco;
+import com.jsilvamoises.model.entities.TipoLogradouro;
 import com.jsilvamoises.util.FacesUtil;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -26,8 +27,9 @@ public class MBTipoEndereco implements Serializable {
     private static final Long serialVersionUID = 1L;
     private int aba = 1;
     private TipoEndereco tipoEndereco = new TipoEndereco();
+    private TipoLogradouro tipoLogradouro = new TipoLogradouro();  
     private List<TipoEndereco> tipoEnderecos = new ArrayList<>();
-    ;
+    
     private List<TipoEndereco> tipoEnderecosFiltrada = new ArrayList<>();
 
     public MBTipoEndereco() {
@@ -132,6 +134,18 @@ public class MBTipoEndereco implements Serializable {
 
     public void setAba(int aba) {
         this.aba = aba;
+    }
+
+    public TipoLogradouro getTipoLogradouro() {
+        return tipoLogradouro;
+    }
+
+    public void setTipoLogradouro(TipoLogradouro tipoLogradouro) {
+        this.tipoLogradouro = tipoLogradouro;
+    }
+    
+      public TipoEndereco getTipoEnderecoById(Long id){
+        return tipoEnderecoDAO().getEntity(id);
     }
 
 }

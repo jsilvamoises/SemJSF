@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../resources/template/modeloPrincipal.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+        <p:dialog header="Cadastro de Produtos" visible="true" style="margin-bottom: 10px;" showEffect="explode" hideEffect="slide" resizable="false" minimizable="true">
+            <h1>Fornecedor</h1>
+            <p:separator/>
+            <h:form>
+                <h:panelGrid columns="2" width="800">
+                    <p:outputLabel value="Codigo"/>
+                    <p:outputLabel value="Nome / Razão"/>
+
+                    <p:autoComplete size="10"/>
+                    <p:autoComplete size="70" completeMethod="#{mbPessoa.listByNomeLike}" autocomplete="true" var="pessoa" itemLabel="#{pessoa.nome}" forceSelection="true" itemValue="#{pessoa.nome}" dropdown="true"/>
+                </h:panelGrid>
+
+                <p:separator/>
+
+                <h:panelGrid columns="3" style="width: 100%">
+                    <p:outputLabel value="Codigo Barra"/>
+                    <p:outputLabel value="Tipo Codigo"/>
+                    <p:outputLabel value="Descrição"/>
+                    <p:inputText  size="15"/>
+                    <p:selectOneMenu  filter="true">
+                        <f:selectItem itemLabel="Selecione" />
+                        <f:selectItems value="#{mbTipoCodigoBarra.tipoCodigoBarras}" var="codbar" itemLabel="#{codbar.descricao}" itemValue="#{codbar}"  />
+                    </p:selectOneMenu>
+                    <p:inputText  size="56"/>
+                </h:panelGrid>
+
+                <h:panelGrid columns="4">
+                    <p:outputLabel value="Peso"/>
+                    <p:outputLabel value="Altura"/>
+                    <p:outputLabel value="Largura"/>
+                    <p:outputLabel value="Comprimento"/>
+                    <p:inputText size="10"/>
+                    <p:inputText/>
+                    <p:inputText/>
+                    <p:inputText/>
+                </h:panelGrid>
+            </h:form>
+
+        </p:dialog>
+    </ui:define>
+
+</ui:composition>

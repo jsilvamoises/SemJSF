@@ -8,7 +8,7 @@ body {
 
 h1 {
     font-family: Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
-    border-bottom: 1px solid #AFAFAF; 
+    //border-bottom: 1px solid #AFAFAF; 
     font-size:  16px;
     font-weight: bold;
     margin: 0px;
@@ -29,13 +29,14 @@ a:link:hover, a:visited:hover  {
 }
 
 #topo{
+    
     margin:0;
     padding:0;
     width:auto;
     height:130px;
-
-    background-image: url(../..//resources/images/topo.jpg); 
-
+    //banner_seg_distribuicao_logistica
+   // background-image: url(../..//resources/images/topo.jpg); 
+    background-image: url(../..//resources/images/banner_seg_distribuicao_logistica.jpg); 
 }
 
 #rodape{
@@ -62,4 +63,20 @@ a:link:hover, a:visited:hover  {
    background-image: url(../..//resources/images/fundo.JPG); 
    margin: 0 auto;
    clear:both;
+}
+#logoff{
+    float: right;
+    margin-top: 20px;
+    margin-right: 20px;
+}
+#home{
+    float: left;
+}
+#usurioLogado{
+    margin-top: 1px;
+    text-align: left;
+    font-size: 20px;
+    font-family: sans-serif;
+    color: #D20005;
+    
 }

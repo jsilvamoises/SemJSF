@@ -8,6 +8,7 @@ package com.jsilvamoises.controller;
 import com.jsilvamoises.dao.HibernateDAO;
 import com.jsilvamoises.dao.InterfaceDAO;
 import com.jsilvamoises.model.entities.Cidade;
+import com.jsilvamoises.model.entities.Sexo;
 import com.jsilvamoises.util.FacesUtil;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -132,6 +133,11 @@ public class MBCidade implements Serializable {
 
     public void setAba(int aba) {
         this.aba = aba;
+    }
+    
+    
+     public Cidade getCidadeById(Long id){
+        return cidadeDAO().getEntity(id);
     }
 
 }
